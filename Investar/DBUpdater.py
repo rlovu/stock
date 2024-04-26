@@ -7,3 +7,10 @@ from threading import Timer
 
 class DBUpdater:
     def __init__(self):
+        self.conn = pymysql.connect(host='localhost', user='eugene', passwd='eugene', db='stock', charset='utf8')
+
+        with self.conn.cursor() as curs:
+            sql = """
+            CREATE TABLE IF NOT EXISTS company_info (
+                code VARCHAR(20),
+            )"""
